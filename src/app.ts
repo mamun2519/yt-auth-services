@@ -2,6 +2,7 @@ import express, { Application, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import { StatusCodes } from 'http-status-codes'
+import globalErrorHandler from './app/middleware/globalErrorHandler'
 const app: Application = express()
 
 //middleware
@@ -18,7 +19,8 @@ app.use([
 app.get('/health', (req: Request, res: Response) => {
   res.status(StatusCodes.OK).send('Server Is Run Successfully')
 })
-
+// global error Handler
+app.use(globalErrorHandler)
 // root api
 app.get('/', (req: Request, res: Response) => {
   res.status(StatusCodes.OK).send({ success: true, message: 'Server is run' })
