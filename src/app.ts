@@ -13,7 +13,7 @@ app.use([
   express.urlencoded({ extended: true }),
 ])
 
-// application route
+// application routes
 
 // api test
 app.get('/health', (req: Request, res: Response) => {
