@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from 'express'
+import express, { Application, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import { StatusCodes } from 'http-status-codes'
@@ -23,5 +23,13 @@ app.get('/health', (req: Request, res: Response) => {
 app.get('/', (req: Request, res: Response) => {
   res.status(StatusCodes.OK).send({ success: true, message: 'Server is run' })
 })
-
+// Not Found Route
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(300).json({
+    success: false,
+    message: 'Not Found',
+    errorMessages: [{ path: req.originalUrl, message: 'API Not Found' }],
+  })
+  next()
+})
 export default app
