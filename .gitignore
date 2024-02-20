@@ -154,3 +154,6 @@ $RECYCLE.BIN/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node,Windows,VisualStudioCode
 .vercel
+
+
+/ node_modules

@@ -30,12 +30,12 @@ const bootstrap = async () => {
     process.on('uncaughtException', unexpectedErrorHandler)
     process.on('unhandledRejection', unexpectedErrorHandler)
 
-    process.on('SIGTERM', () => {
-      console.log('SIGTERM received')
-      if (server) {
-        server.close()
-      }
-    })
+    // process.on('SIGTERM', () => {
+    //   console.log('SIGTERM received')
+    //   if (server) {
+    //     server.close()
+    //   }
+    // })
   } catch (error) {
     console.log(error)
   }

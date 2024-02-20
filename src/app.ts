@@ -3,6 +3,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import { StatusCodes } from 'http-status-codes'
 import globalErrorHandler from './app/middleware/globalErrorHandler'
+import { ApplicationRootRoute } from './app/routes'
 const app: Application = express()
 
 //middleware
@@ -14,7 +15,7 @@ app.use([
 ])
 
 // application routes
-
+app.use('/api/v1', ApplicationRootRoute)
 // api test
 app.get('/health', (req: Request, res: Response) => {
   res.status(StatusCodes.OK).send('Server Is Run Successfully')
