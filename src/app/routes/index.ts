@@ -1,6 +1,7 @@
 import express from 'express'
 import { AuthRoute } from '../modules/auth/auth.route'
 import { UserRoute } from '../modules/user/user.route'
+import { FeedbackRoute } from '../modules/feedback/feedback.route'
 const router = express.Router()
 
 const moduleRoutes = [
@@ -11,6 +12,10 @@ const moduleRoutes = [
   {
     path: '/user',
     route: UserRoute,
+  },
+  {
+    path: '/feedback',
+    route: FeedbackRoute,
   },
 ]
 
