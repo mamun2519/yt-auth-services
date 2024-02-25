@@ -4,7 +4,7 @@ import ValidateRequestAPI from '../../middleware/ValidationRequest'
 import { FeedbackValidation } from './feedback.validation'
 
 const router = express.Router()
-router.get('/', FeedbackController.insertFeedback)
+router.get('/', FeedbackController.getAllFeedback)
 router.get('/:id', FeedbackController.getFeedBackById)
 router.delete('/:id', FeedbackController.deleteFeedback)
 router.patch('/:id', FeedbackController.updateFeedbackById)

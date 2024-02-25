@@ -8,19 +8,20 @@ import { AuthService } from './auth.services'
 const signupUser = catchAsync(async (req: Request, res: Response) => {
   const result = await AuthService.signupUserIntoDB(req.body)
   const { user, token } = result
+
   //set refresh token into cookie
   const cookieOptions = {
     secure: config.env === 'production',
     httpOnly: true,
   }
-  res.cookie('refreshToken', cookieOptions)
+  res.cookie('refreshToken', token.refreshToken, cookieOptions)
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
     message: 'Signin Successfully!',
     data: {
       user,
-      userToken: token.accessToken,
+      token: token,
     },
   })
 })

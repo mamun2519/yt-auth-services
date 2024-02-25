@@ -8,7 +8,7 @@ const FeedbackPostZodSchema = z.object({
     email: z.string({
       required_error: 'Email  is required',
     }),
-    message: z.string({
+    massage: z.string({
       required_error: 'Message  is required',
     }),
   }),

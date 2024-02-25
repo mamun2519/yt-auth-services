@@ -18,10 +18,20 @@ const signupUserIntoDB = async (data: IUser): Promise<IUserResponse> => {
       config.jwt.secret_token as Secret,
       config.jwt.expire_in as string,
     )
+    const refreshToken = jwtHelpers.createToken(
+      {
+        userId: isExistUser._id,
+        role: isExistUser.role,
+        email: isExistUser.email,
+      },
+      config.jwt.refresh_token as Secret,
+      config.jwt.refresh_expire_in as string,
+    )
     return {
       user: isExistUser,
       token: {
         accessToken,
+        refreshToken,
       },
     }
   }
@@ -29,18 +39,22 @@ const signupUserIntoDB = async (data: IUser): Promise<IUserResponse> => {
   data.username = userName
 
   const result = await User.create(data)
-  // generate JWT Token
-  const accessToken = jwtHelpers.createToken(
-    { userId: result.id, role: result.role, email: result.email },
-    config.jwt.secret_token as Secret,
-    config.jwt.expire_in as string,
-  )
   // generate Refresh Token
   const refreshToken = jwtHelpers.createToken(
     { userId: result._id, role: result.role, email: result.email },
     config.jwt.refresh_token as Secret,
     config.jwt.refresh_expire_in as string,
   )
+
+  // generate JWT Token
+  const accessToken = jwtHelpers.createToken(
+    { userId: result._id, role: result.role, email: result.email },
+    config.jwt.secret_token as Secret,
+    config.jwt.expire_in as string,
+  )
+  console.log('Accestoken', accessToken)
+
+  console.log('Token', refreshToken)
 
   return {
     user: result,
