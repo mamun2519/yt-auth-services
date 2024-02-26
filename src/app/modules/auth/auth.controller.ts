@@ -9,7 +9,7 @@ const signupUser = catchAsync(async (req: Request, res: Response) => {
   const result = await AuthService.signupUserIntoDB(req.body)
   const { user, token } = result
 
-  //set refresh token into cookie
+  //set refresh token into cookies
   const cookieOptions = {
     secure: config.env === 'production',
     httpOnly: true,
