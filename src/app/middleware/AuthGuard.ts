@@ -19,9 +19,8 @@ const AuthGuard =
         token,
         config.jwt.secret_token as Secret,
       )
-      req.user = verifiedUser // role  , userid
+      req.user = verifiedUser
 
-      // role diye guard korar jnno
       if (requiredRoles.length && !requiredRoles.includes(verifiedUser.role)) {
         throw new API_Error(StatusCodes.FORBIDDEN, 'Forbidden')
       }
