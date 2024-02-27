@@ -61,7 +61,9 @@ const getAllUserFromDB = async (
 const getUserByIdFromDB = async (id: string): Promise<IUser | null> => {
   return User.findById(id)
 }
-
+const getUserByEmail = async (email: string): Promise<IUser | null> => {
+  return User.findOne({ email })
+}
 const deleteUserByIdIntoDB = async (_id: string): Promise<any> => {
   const deletedUser = await User.deleteOne({ _id })
   return deletedUser
@@ -71,4 +73,5 @@ export const UserService = {
   getAllUserFromDB,
   getUserByIdFromDB,
   deleteUserByIdIntoDB,
+  getUserByEmail,
 }
