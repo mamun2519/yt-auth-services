@@ -40,9 +40,19 @@ const deletedUser = catchAsync(async (req: Request, res: Response) => {
     data: result,
   })
 })
+const getUserByEmail = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.getUserByEmail(req.params.email)
+  sendResponse<IUser>(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'User Fetch successfully !',
+    data: result,
+  })
+})
 
 export const UserController = {
   getAllUser,
   deletedUser,
   getUserById,
+  getUserByEmail,
 }
