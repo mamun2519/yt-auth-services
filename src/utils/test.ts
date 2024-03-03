@@ -1,3 +1,4 @@
+import globalErrorHandler from '../app/middleware/globalErrorHandler'
 import { ApplicationRootRoute } from '../app/routes'
 import express, { NextFunction, Request, Response } from 'express'
 export const TestingApp = () => {
@@ -11,7 +12,7 @@ export const TestingApp = () => {
   app.use('/api/v1', ApplicationRootRoute)
 
   // global error Handler
-  //   app.use(globalErrorHandler)
+  app.use(globalErrorHandler)
   // root api
 
   // Not Found Route

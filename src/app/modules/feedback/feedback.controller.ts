@@ -60,7 +60,7 @@ const updateFeedbackById = catchAsync(async (req: Request, res: Response) => {
 const deleteFeedback = catchAsync(async (req: Request, res: Response) => {
   const result = await FeedbackService.deleteFeedbackFromDB(req.params.id)
   sendResponse<IFeedBack>(res, {
-    statusCode: StatusCodes.OK,
+    statusCode: StatusCodes.NO_CONTENT,
     success: true,
     message: 'Feedback delete successfully !',
     data: result,
