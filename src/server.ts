@@ -2,11 +2,12 @@ import app from './app'
 import config from './config'
 import mongoose from 'mongoose'
 import { Server } from 'http'
+
 // Main Server
 const bootstrap = async () => {
   try {
     await mongoose.connect(config.database_url as string)
-    console.log('database connect')
+    console.log('database connect..........')
     const server: Server = app.listen(config.port, () => {
       console.log(`server Is Run Successfully PORT NO- ${config.port}`)
     })
