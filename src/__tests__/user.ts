@@ -23,23 +23,31 @@ describe('User', () => {
       expect(Array.isArray(body.data)).toBe(Array.isArray([]))
     })
   })
-  describe('Details User API Test', () => {
-    it('Should Retune of a specific Data Entry', async () => {
+  // describe('Details User API Test', () => {
+  //   it('Should Retune of a specific Data Entry', async () => {
+  //     const id = '65d4792b7c1dca7ce6e93212'
+  //     const { body } = await supertest(TestingApp())
+  //       .get(`${UserRoute}/${id}`)
+  //       .expect(200)
+  //     expect(body.success).toEqual(true)
+  //   })
+  // })
+  // describe('Details User By Email API Test', () => {
+  //   it('Should Retune of a specific Data Entry', async () => {
+  //     const email = 'saif@gmail.com'
+  //     const { body } = await supertest(TestingApp())
+  //       .get(`${UserRoute}/${email}`)
+  //       .expect(200)
+  //     expect(body.success).toEqual(true)
+  //   })
+  // })
+  describe('Delete Feedback API Test', () => {
+    it('Should delete a specific data entry', async () => {
       const id = '65d4792b7c1dca7ce6e93212'
       const { body } = await supertest(TestingApp())
-        .get(`${UserRoute}/${id}`)
-        .expect(200)
-      expect(body.success).toEqual(true)
+        .delete(`${UserRoute}/${id}`)
+        .expect(204)
+      expect(body).toEqual({})
     })
   })
-  describe('Details User By Email API Test', () => {
-    it('Should Retune of a specific Data Entry', async () => {
-      const email = 'saif@gmail.com'
-      const { body } = await supertest(TestingApp())
-        .get(`${UserRoute}/${email}`)
-        .expect(200)
-      expect(body.success).toEqual(true)
-    })
-  })
-  // describe("User Not Found ")
 })

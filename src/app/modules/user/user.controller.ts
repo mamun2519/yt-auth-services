@@ -34,7 +34,7 @@ const getUserById = catchAsync(async (req: Request, res: Response) => {
 const deletedUser = catchAsync(async (req: Request, res: Response) => {
   const result = await UserService.deleteUserByIdIntoDB(req.params.id)
   sendResponse<IUser>(res, {
-    statusCode: StatusCodes.OK,
+    statusCode: StatusCodes.NO_CONTENT,
     success: true,
     message: 'User delete successfully !',
     data: result,
