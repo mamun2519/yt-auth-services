@@ -13,7 +13,7 @@ const signupUserIntoDB = async (data: IUser): Promise<IUserResponse> => {
   data.username = userName.replace(/\s+/g, '-')
 
   const result = await User.create(data)
-  // generate Refresh Token
+
   const singUpUser = singUpGenerateTokenUser(result)
   return singUpUser
 }
