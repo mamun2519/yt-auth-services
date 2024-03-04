@@ -7,6 +7,8 @@ import { User } from '../auth/auth.model'
 import { userSearchableFields } from './user.constant'
 import { IUserFilters } from './user.interface'
 import { IGenericResponse } from '../../../interface/common'
+import API_Error from '../../../error/apiError'
+import { StatusCodes } from 'http-status-codes'
 
 const getAllUserFromDB = async (
   filters: IUserFilters,
@@ -59,10 +61,19 @@ const getAllUserFromDB = async (
 }
 
 const getUserByIdFromDB = async (id: string): Promise<IUser | null> => {
-  return User.findById(id)
+  const user = await User.findById(id)
+
+  if (!user) {
+    throw new API_Error(StatusCodes.NOT_FOUND, 'User Not Founds')
+  }
+  return user
 }
 const getUserByEmail = async (email: string): Promise<IUser | null> => {
-  return User.findOne({ email })
+  const user = await User.findOne({ email })
+  if (!user) {
+    throw new API_Error(StatusCodes.NOT_FOUND, 'User Not Found')
+  }
+  return user
 }
 const deleteUserByIdIntoDB = async (_id: string): Promise<any> => {
   const deletedUser = await User.deleteOne({ _id })

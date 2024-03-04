@@ -30,7 +30,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(300).json({
     success: false,
-    message: 'Not Found',
+    message: 'API Not Found',
     errorMessages: [{ path: req.originalUrl, message: 'API Not Found' }],
   })
   next()
