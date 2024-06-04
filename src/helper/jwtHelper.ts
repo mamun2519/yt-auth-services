@@ -14,7 +14,18 @@ const verifyToken = (token: string, secret: Secret): JwtPayload => {
   return jwt.verify(token, secret) as JwtPayload
 }
 
+const decodedJWTToken = (token: string, secret: Secret): JwtPayload | null => {
+  try {
+    return jwt.verify(token, secret) as JwtPayload
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    console.error('Error decoding JWT:', error.message)
+    return null
+  }
+}
+
 export const jwtHelpers = {
   createToken,
   verifyToken,
+  decodedJWTToken,
 }

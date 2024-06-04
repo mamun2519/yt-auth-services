@@ -1,7 +1,9 @@
+import mongoose from 'mongoose'
 import globalErrorHandler from '../app/middleware/globalErrorHandler'
 import { ApplicationRootRoute } from '../app/routes'
 import express, { NextFunction, Request, Response } from 'express'
-export const TestingApp = () => {
+import config from '../config'
+export const TestingApp = async () => {
   const app = express()
   app.use(express.json())
 
@@ -24,6 +26,7 @@ export const TestingApp = () => {
     })
     next()
   })
+  await mongoose.connect(config.database_url as string)
   return app
 }
 
