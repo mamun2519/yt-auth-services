@@ -16,13 +16,13 @@ app.use([
 
 //* application routes
 app.use('/api/v1', ApplicationRootRoute)
-// api test
+//* api test
 app.get('/health', (req: Request, res: Response) => {
   res.status(StatusCodes.OK).send('Server Is Run Successfully')
 })
-// global error Handler
+//* global error Handler
 app.use(globalErrorHandler)
-// root api
+//* root api
 app.get('/', (req: Request, res: Response) => {
   res.status(StatusCodes.OK).send({ success: true, message: 'Server is run' })
 })
