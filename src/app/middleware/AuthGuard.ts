@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes'
 import { jwtHelpers } from '../../helper/jwtHelper'
 import config from '../../config'
 import { Secret } from 'jsonwebtoken'
-//Auth Guard
+//* Auth Guard
 const AuthGuard =
   (...requiredRoles: string[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
