@@ -6,7 +6,7 @@ import globalErrorHandler from './app/middleware/globalErrorHandler'
 import { ApplicationRootRoute } from './app/routes'
 const app: Application = express()
 
-//middleware
+//*middleware
 app.use([
   cors(),
   express.json(),
@@ -14,7 +14,7 @@ app.use([
   express.urlencoded({ extended: true }),
 ])
 
-// application routes
+//* application routes
 app.use('/api/v1', ApplicationRootRoute)
 // api test
 app.get('/health', (req: Request, res: Response) => {
